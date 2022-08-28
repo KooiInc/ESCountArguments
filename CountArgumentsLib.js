@@ -13,10 +13,10 @@ function fnLenFactory() {
     fnStr = fnStr.match(extractArgs).shift().replace(/[\\]./g, ``).replace(valueParamsCleanup, ``);
     return !fnStr.startsWith(`(`) ? `(${fnStr})` : fnStr; };
 
-  return (func, forTest = false) => {
+  return func => {
     const params = extractArgumentsPartFromFunction(func);
     const nParams = params === `()` ? 0 : countArgumentsByBrackets(params);
-    return forTest ? [`count from: <code>${params}</code>;`, nParams] : nParams;
+    return nParams;
   };
 
   function regExps() {
