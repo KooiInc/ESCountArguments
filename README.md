@@ -1,7 +1,7 @@
 # ESCountArguments
 Count all arguments of a function (including arguments with default values)
 
-The native `length` method of an ES function returns the number of the function arguments, e.g. `*function(a, b) {}).length` is 2. But if the function knows arguments with default values, those are not included. So
+The native `length` method of an ES function returns the number of the function arguments, e.g. `function(a, b) {}).length` is 2. But if the function knows arguments with default values, those are not included. So
 
 ```
 function x(a, b=2, c=3) {};
