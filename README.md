@@ -10,6 +10,8 @@ console.log(x.length); // => 1;
 
 This small utility library also counts the arguments with default values.
 
-this will always be an *approximation*, good for almost all cases but it *may* not be accurate for edge cases (like very complex strings/strings within values that are Objects, function declarations as parameters etc.).
+This will always be an *approximation*, good for almost all cases but it *may* not be accurate for edge cases (like very complex strings/strings within values that are Objects, function declarations as parameters etc.).
+
+Import this library using `https://kooiinc.github.io/ESCountArguments/`
 
 See this [Stackblitz project](https://stackblitz.com/edit/web-platform-jaxz82?file=script.js) for tests and syntax
