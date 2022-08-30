@@ -1,4 +1,4 @@
-export default fnLenFactory;
+export default fnLenFactory();
 
 function fnLenFactory() {
   const {extractArgs, valueParamsCleanup, cleanupFnStr} = regExps();
