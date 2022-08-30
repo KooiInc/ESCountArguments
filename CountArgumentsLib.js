@@ -28,14 +28,14 @@ function fnLenFactory() {
           | ( ( (^\([^)].+\) )      // or anything between parenthesis
           | \(\) )                  // or parenthesis open + close
           ( ?=( =>|{ ) ) )          // followed by =>, =>{ or {
-          ${[`i`]}                 // case insensitive`,
+          ${[`i`]}                  // case insensitive`,
       valueParamsCleanup: createRegExp`
           // Cleanup arguments /w default string values
           // ---
           ( ?<=[\`"'] )    // everything prefixed with string delimiter
           ( [^\`,'"].+? )  // everything thereafter except starting delimiters *and comma* (non greedy)
           ( ?=[\`"'] )     // followed by starting string delimiter
-          ${[`g`]}        // global`,
+          ${[`g`]}         // global`,
       cleanupFnStr: name => createRegExp`
           // For cleanup of a stringified [named] Function.
           // matches replaced with empty string will result in a string
@@ -44,7 +44,7 @@ function fnLenFactory() {
           \s          // space
           | function  // 'function'
           | ${name}   // the function name
-          ${[`g`]}   // global`, };
+          ${[`g`]}    // global`, };
   }
 
   function createRegExp(regexStr, ...args) {
