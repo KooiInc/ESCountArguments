@@ -28,14 +28,14 @@ function fnLenFactory() {
           | ( ( (^\([^)].+\) )      // or anything between parenthesis
           | \(\) )                  // or parenthesis open + close
           ( ?=( =>|{ ) ) )          // followed by =>, =>{ or {
-          ${'m::i'}                 // case insensitive`,
+          ${[`i`]}                 // case insensitive`,
       valueParamsCleanup: createRegExp`
           // Cleanup arguments /w default string values
           // ---
           ( ?<=[\`"'] )    // everything prefixed with string delimiter
           ( [^\`,'"].+? )  // everything thereafter except starting delimiters *and comma* (non greedy)
           ( ?=[\`"'] )     // followed by starting string delimiter
-          ${'m::g'}        // global`,
+          ${[`g`]}        // global`,
       cleanupFnStr: name => createRegExp`
           // For cleanup of a stringified [named] Function.
           // matches replaced with empty string will result in a string
@@ -44,12 +44,14 @@ function fnLenFactory() {
           \s          // space
           | function  // 'function'
           | ${name}   // the function name
-          ${`m::g`}   // global`, };
+          ${[`g`]}   // global`, };
   }
 
   function createRegExp(regexStr, ...args) {
-    const flags = (args.slice(-1) || [`nothing`]).shift().startsWith(`m::`) ? args.pop().slice(3) : ``;
-    const rawStr = regexStr.raw.reduce( (a, v, i ) => a.concat(args[i-1] || ``).concat(v), ``);
+    const flags = Array.isArray(args.slice(-1)) ? args.pop().join('') : ``;
+    const rawStr = args.length && 
+      regexStr.raw.reduce( (a, v, i ) => a.concat(args[i-1] || ``).concat(v), ``) || 
+      regexStr.raw.join(``);
     
     return new RegExp(
       rawStr
