@@ -48,10 +48,9 @@ function fnLenFactory() {
   }
 
   function createRegExp(regexStr, ...args) {
-    const strEmpty = new String();
-    const flags = (args.length && args.slice(-1).shift() || strEmpty).startsWith(`m::`) ? args.pop().slice(3) : ``;
-    const rawStr = regexStr.raw.reduce( (a, v, i ) => a.concat(`${v}`.concat(args[i] && args[i] || strEmpty) || strEmpty), ``);
-      
+    const flags = (args.slice(-1) || [`nothing`]).shift().startsWith(`m::`) ? args.pop().slice(3) : ``;
+    const rawStr = regexStr.raw.reduce( (a, v, i ) => a.concat(args[i-1] || ``).concat(v), ``);
+    
     return new RegExp(
       rawStr
         .split(`\n`)
