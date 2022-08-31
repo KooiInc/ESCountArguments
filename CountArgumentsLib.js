@@ -27,7 +27,7 @@ function fnLenFactory() {
           ( ^[a-z_]( ?=(=>|=>{) ) ) // letter or underscore followed by fat arrow and/or curly opening bracket
           | ( ( (^\([^)].+\) )      // or anything between parenthesis
           | \(\) )                  // or parenthesis open + close
-          ( ?=( =>|{ ) ) )          // followed by =>, =>{ or {
+          ( ?=( =>|=>{|{ ) ) )      // followed by =>, =>{ or {
           ${[`i`]}                  // case insensitive`,
       valueParamsCleanup: createRegExp`
           // Cleanup arguments /w default string values
